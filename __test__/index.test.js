@@ -10,14 +10,14 @@ describe("jokes tests", () => {
   it("POST /register", async () => {
     const res = await supertest(server)
       .post("/api/auth/register")
-      .send({ username: "Jay", password: "Z" });
+      .send({ username: "Rocky", password: "3" });
     expect(res.statusCode).toBe(201);
     expect(res.headers["content-type"]).toBe("application/json; charset=utf-8");
   });
   it(" Broken POST /login", async () => {
     const res = await supertest(server)
       .post("/api/auth/login")
-      .send({ username: "Lambda", password: "School" });
+      .send({ username: "Rocky", password: "3" });
     expect(res.statusCode).toBe(500);
     expect(res.body.id).toBeUndefined();
     // expect(res.headers["content-type"]).toBe("application/json; charset=utf-8");

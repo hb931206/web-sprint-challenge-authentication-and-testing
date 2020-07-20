@@ -6,11 +6,11 @@ function authenticate() {
       message: "Invalid Creds",
     };
     try {
-      const token = req.cookies.token;
+      const token = req.headers.token;
       if (!token) {
         return res.status(401).json(authError);
       }
-      jwt.verify(token, process.env.JWT_SECRET, (err) => {
+      jwt.verify(token, process.env.JWT_SECRET || "secret", (err) => {
         if (err) {
           return res.status(401).json(authError);
         }

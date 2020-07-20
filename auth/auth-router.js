@@ -46,13 +46,14 @@ router.post("/login", async (req, res, next) => {
       userId: user.id,
       username: user.username,
     };
-    res.cookie("token", jwt.sign(payload, process.env.JWT_SECRET));
+    // res.cookie("token", jwt.sign(payload, process.env.JWT_SECRET));
 
     res.json({
       message: `Welcome ${user.username}!`,
-      // token: jwt.sign(payload, process.env.JWT_SECRET),
+      token: jwt.sign(payload, process.env.JWT_SECRET || "secret"),
     });
   } catch (err) {
+    console.log(err);
     next(err);
   }
 });
